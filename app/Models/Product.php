@@ -35,32 +35,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class,'category_id');
     }
-    public function subcategory(): BelongsTo
+    public function varision(): BelongsTo
     {
-        return $this->belongsTo(Subcategory::class,'subcategory_id');
-    }
-    public function childcategory(): BelongsTo
-    {
-        return $this->belongsTo(Childcategory::class,'childcategory_id');
-    }
-    public function innerChild(): BelongsTo
-    {
-        return $this->belongsTo(InnerChild::class,'innerChild_id');
-    }
-    public function brand(): BelongsTo
-    {
-        return $this->belongsTo(Brands::class,'brand_id');
-    }
-    public function size(): BelongsTo
-    {
-        return $this->belongsTo(Size::class,'size_id');
-    }
-    public function color(): BelongsTo
-    {
-        return $this->belongsTo(Color::class,'color_id');
-    }
-    public function certification(): BelongsTo
-    {
-        return $this->belongsTo(Certification::class,'certification_id');
+        return $this->belongsTo(Varision::class,'varision_id');
     }
 }

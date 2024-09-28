@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\VarisionController;
 use App\Http\Controllers\AttributesController;
+use App\Http\Controllers\ValueController;
 use App\Http\Controllers\CostTypeController;
 use App\Http\Controllers\CostingController;
 use App\Http\Controllers\OthersProfitController;
@@ -55,13 +57,23 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::get('category-update/{id}',[CategoryController::class,'editcategory'])->name('category.edit');
     Route::put('category-update/{id}',[CategoryController::class,'updatecategory'])->name('category.update');
 
+    Route::get('varision-index',[VarisionController::class, 'indexvarision'])->name('varision.index');
+    Route::get('varision-insert',[VarisionController::class,'createvarision'])->name('varision.create');
+    Route::post('varision-insert',[VarisionController::class,'storevarision'])->name('varision.store');
+    Route::get('varision-update/{id}',[VarisionController::class,'editvarision'])->name('varision.edit');
+    Route::put('varision-update/{id}',[VarisionController::class,'updatevarision'])->name('varision.update');
 
-    Route::get('brand-index',[AttributesController::class, 'indexbrand'])->name('brand.index');
-    Route::get('brand-insert',[AttributesController::class,'createbrand'])->name('brand.create');
-    Route::post('brand-insert',[AttributesController::class,'storebrand'])->name('brand.store');
-    Route::get('brand-update/{id}',[AttributesController::class,'editbrand'])->name('brand.edit');
-    Route::put('brand-update/{id}',[AttributesController::class,'updatebrand'])->name('brand.update');
+    Route::get('attributes-index',[AttributesController::class, 'indexattributes'])->name('attributes.index');
+    Route::get('attributes-insert',[AttributesController::class,'createattributes'])->name('attributes.create');
+    Route::post('attributes-insert',[AttributesController::class,'storeattributes'])->name('attributes.store');
+    Route::get('attributes-update/{id}',[AttributesController::class,'editattributes'])->name('attributes.edit');
+    Route::put('attributes-update/{id}',[AttributesController::class,'updateattributes'])->name('attributes.update');
 
+    Route::get('value-index',[ValueController::class, 'indexvalue'])->name('value.index');
+    Route::get('value-insert',[ValueController::class,'createvalue'])->name('value.create');
+    Route::post('value-insert',[ValueController::class,'storevalue'])->name('value.store');
+    Route::get('value-update/{id}',[ValueController::class,'editvalue'])->name('value.edit');
+    Route::put('value-update/{id}',[ValueController::class,'updatevalue'])->name('value.update');
 
     Route::get('warehouse-index',[WarehouseController::class, 'indexwarehouse'])->name('warehouse.index');
     Route::get('warehouse-insert',[WarehouseController::class,'createwarehouse'])->name('warehouse.create');

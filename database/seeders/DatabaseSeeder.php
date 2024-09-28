@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Varision;
 use App\Models\CostType;
 use App\Models\Warehouse;
 use App\Models\Product;
@@ -31,28 +32,9 @@ class DatabaseSeeder extends Seeder
     private $categories = [
         'Category 1', 'Category 2', 'Category 3'
     ];
-    // private $brands = [
-    //     'Studds', 'Vega', 'LS2', 'AXOR', 'MT', 'Steelbird', 'SKT', 'IBK', 'Others',
-    // ];
-
-    // private $modeles = [
-    //     'THUNDER', 'BOLT', 'Others',
-    // ];
-
-        // private $type = [
-    //     'Full Face', 'Half Shell', 'Modular', 'Off Road', 'Open Face', 'Cap', 'Dual Sport',
-    // ];
-
-    // private $sizes = [
-    //     'XS', 'S', 'M', 'L', 'XL', 'XXL', 'Others',
-    // ];
-    // private $colors = [
-    //     'Blue', 'Red', 'Black', 'White', 'Pink', 'Grey', 'Yellow', 'Mix Color','Various Print', 'Others',
-    // ];
-
-    // private $certifications = [
-    //     'BSTI', 'ISI', 'DOT', 'ECE',
-    // ];
+    private $varisions = [
+        'Brand', 'Model', 'Type', 'Size', 'Color',  'Certification', 'Others',
+    ];
 
     private $costtypes = [
         'Labour', 'Storage', 'Rent', 'Utilities', 'Employee', 'Others',
@@ -74,19 +56,10 @@ class DatabaseSeeder extends Seeder
         foreach ($this->categories as $category) {
             Category::create(['name' => $category]);
         };
-        // foreach ($this->brands as $brand) {
-        //     Brand::create(['name' => $brand]);
-        // };
-        // foreach ($this->sizes as $size) {
-        //     Size::create(['name' => $size]);
-        // };
-        
-        // foreach ($this->colors as $color) {
-        //     Color::create(['name' => $color]);
-        // };
-        // foreach ($this->certifications as $certification) {
-        //     Certification::create(['name' => $certification]);
-        // };
+
+        foreach ($this->varisions as $varision) {
+            Varision::create(['name' => $varision]);
+        };
 
         foreach ($this->costtypes as $costtype) {
             CostType::create(['name' => $costtype]);

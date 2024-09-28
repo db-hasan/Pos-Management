@@ -7,51 +7,23 @@ use Illuminate\Http\RedirectResponse;
 use Exception;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\SubCategory;
-use App\Models\ChildCategory;
-use App\Models\InnerChild;
-use App\Models\Brand;
-use App\Models\Size;
-use App\Models\Color;
-use App\Models\Certification;
-
 
 class ProductController extends Controller
 {
     public function indexproduct() {
         $data['products'] = Product::where('status', 1)->orderBy('id', 'desc')->paginate(50);
         $data['categories'] = Category::all();
-        $data['subcategories'] = SubCategory::all();
-        $data['childcategories'] = ChildCategory::all();
-        $data['innerchilds'] = InnerChild::all();
-        $data['brands'] = Brand::all();
-        $data['sizes'] = Size::all();
-        $data['colors'] = Color::all();
-        $data['certifications'] = Certification::all();
         return view('backend.product.index', $data);
     }
     public function inactiveproduct() {
         $data['products'] = Product::where('status', 2)->orderBy('id', 'desc')->paginate(50);
         $data['categories'] = Category::all();
-        $data['subcategories'] = SubCategory::all();
-        $data['childcategories'] = ChildCategory::all();
-        $data['innerchilds'] = InnerChild::all();
-        $data['brands'] = Brand::all();
-        $data['sizes'] = Size::all();
-        $data['colors'] = Color::all();
-        $data['certifications'] = Certification::all();
         return view('backend.product.incative', $data);
     }
     
     public function createproduct() {
         $data['categories'] = Category::all();
         $data['subcategories'] = SubCategory::all();
-        $data['childcategories'] = ChildCategory::all();
-        $data['innerchilds'] = InnerChild::all();
-        $data['brands'] = Brand::all();
-        $data['sizes'] = Size::all();
-        $data['colors'] = Color::all();
-        $data['certifications'] = Certification::all();
         return view('backend.product.create', $data);
     }
     public function storeproduct(Request $request): RedirectResponse
@@ -108,13 +80,6 @@ class ProductController extends Controller
     public function editproduct($id = null) {
         $products['product'] = Product::find($id);
         $products['categories'] = Category::all();
-        $products['subcategories'] = SubCategory::all();
-        $products['childcategories'] = ChildCategory::all();
-        $products['innerchilds'] = InnerChild::all();
-        $data['brands'] = Brand::all();
-        $products['sizes'] = Size::all();
-        $products['colors'] = Color::all();
-        $products['certifications'] = Certification::all();
         
         if (!$products['product']) {
             return redirect()->back();

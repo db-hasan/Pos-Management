@@ -69,49 +69,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Sub Categories</span>
+                        <a href="{{ route('varision.index') }}">
+                            <i class="bi bi-circle"></i><span>Varision</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Child Categories</span>
+                        <a href="{{ route('attributes.index') }}">
+                            <i class="bi bi-circle"></i><span>Attributes</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Inner Childes</span>
+                        <a href="{{ route('value.index') }}">
+                            <i class="bi bi-circle"></i><span>Attributes Value</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#Attributes" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-buildings"></i><span>Attributes</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="Attributes" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Brands</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Size</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Color</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Certification</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#products" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-gem"></i><span>Product</span><i class="bi bi-chevron-down ms-auto"></i>

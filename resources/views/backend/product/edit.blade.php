@@ -23,66 +23,6 @@
                 class="row g-3 p-3">
                 @csrf
                 @method('PUT')
-            
-                <!-- Brand Field -->
-                <div class="col-md-6 pb-3">
-                    <label for="brand_id" class="form-label">Brand<span class="text-danger">*</span></label>
-                    <select id="brand_id" name="brand_id" class="form-select" required>
-                        @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}" {{ $brand->brand_id == $brand->id ? 'selected' : '' }}>
-                                {{ $brand->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('brand_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            
-                <!-- Size Field -->
-                <div class="col-md-6 pb-3">
-                    <label for="size_id" class="form-label">Size<span class="text-danger">*</span></label>
-                    <select id="size_id" name="size_id" class="form-select" required>
-                        @foreach ($sizes as $size)
-                            <option value="{{ $size->id }}" {{ $size->size_id == $size->id ? 'selected' : '' }}>
-                                {{ $size->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('size_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            
-                <!-- Color Field -->
-                <div class="col-md-6 pb-3">
-                    <label for="color_id" class="form-label">Color<span class="text-danger">*</span></label>
-                    <select id="color_id" name="color_id" class="form-select" required>
-                        @foreach ($colors as $color)
-                            <option value="{{ $color->id }}" {{ $color->color_id == $color->id ? 'selected' : '' }}>
-                                {{ $color->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('color_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            
-                <!-- Certification Field -->
-                <div class="col-md-6 pb-3">
-                    <label for="certification_id" class="form-label">Certification<span class="text-danger">*</span></label>
-                    <select id="certification_id" name="certification_id" class="form-select" required>
-                        @foreach ($certifications as $certification)
-                            <option value="{{ $certification->id }}" {{ $certification->certification_id == $certification->id ? 'selected' : '' }}>
-                                {{ $certification->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('certification_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
 
                 <!-- Product Name Field -->
                 <div class="col-md-6 pb-3">

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id');
+            $table->foreignId('varision_id');
+            $table->integer('priority');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
