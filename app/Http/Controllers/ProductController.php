@@ -23,7 +23,6 @@ class ProductController extends Controller
     
     public function createproduct() {
         $data['categories'] = Category::all();
-        $data['subcategories'] = SubCategory::all();
         return view('backend.product.create', $data);
     }
     public function storeproduct(Request $request): RedirectResponse

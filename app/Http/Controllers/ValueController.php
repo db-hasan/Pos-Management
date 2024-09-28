@@ -31,7 +31,7 @@ class ValueController extends Controller
             'category_id' => 'required',
             'varision_id' => 'required',
             'attributes_id' => 'required',
-            'priority' => 'nullable',
+            'priority' => 'required',
         ]);
 
         // try {
@@ -66,7 +66,7 @@ class ValueController extends Controller
             'category_id' => 'required',
             'varision_id' => 'required',
             'attributes_id' => 'required',
-            'priority' => 'nullable',
+            'priority' => 'required',
             'status' => 'required',
         ]);
     

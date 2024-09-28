@@ -14,7 +14,6 @@ class AttributesController extends Controller
 {
     public function indexattributes() {
         $attributes = Attributes::with(['category', 'varision']) // Load related category and varision
-                                ->orderBy('id', 'desc')
                                 ->paginate(50);
         return view('backend.attributes.index', compact('attributes'));
     }
@@ -29,7 +28,7 @@ class AttributesController extends Controller
         $request->validate([
             'category_id' => 'required',
             'varision_id' => 'required',
-            'priority' => 'nullable',
+            'priority' => 'required',
         ]);
 
         try {
@@ -61,7 +60,7 @@ class AttributesController extends Controller
         $request->validate([
             'category_id' => 'required',
             'varision_id' => 'required',
-            'priority' => 'nullable',
+            'priority' => 'required',
             'status' => 'required',
         ]);
     

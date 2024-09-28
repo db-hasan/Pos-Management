@@ -51,7 +51,7 @@
                 <div class="col-md-12 pb-3">
                     <label for="priority" class="form-label">Priority<span class="text-danger">*</span></label>
                     <input type="number" class="form-control" id="priority" name="priority" value="{{ old('priority') }}"
-                        >
+                    required>
                     @error('priority')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

@@ -22,7 +22,7 @@ class CategoryController extends Controller
     // ***********Product category Funcation************
 
     public function indexcategory() {
-        $categorys = Category::orderBy('id', 'desc')->get();
+        $categorys = Category::paginate(50);
         return view('backend.category.index',compact('categorys'));
     }
     
