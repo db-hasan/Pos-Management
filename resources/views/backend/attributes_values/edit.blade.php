@@ -28,7 +28,7 @@
                     <label for="attributes_id" class="form-label">Attributes<span class="text-danger">*</span></label>
                     <select id="attributes_id" name="attributes_id" class="form-select" required>
                         @foreach ($attributes as $attribute)
-                            <option value="{{ $attribute->id }}" {{ $attribute->attribute_id == $attribute->id ? 'selected' : '' }}>
+                            <option value="{{ $attribute->id }}" {{ $attributesvalues->attributes_id == $attribute->id ? 'selected' : '' }}>
                                 {{ $attribute->name }}
                             </option>
                         @endforeach
@@ -37,6 +37,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                
             
                 <div class="col-md-12 pb-3">
                     <label for="name" class="form-label">Name<span class="text-danger">*</span></label>

@@ -11,9 +11,13 @@ use App\Models\AttributesValues;
 class AttributesValuesController extends Controller
 {
     public function indexattributes_values() {
-        $attributesvalues = AttributesValues::with('attributes')->orderBy('id', 'desc')->paginate(50);
-        return view('backend.attributes_values.index',compact('attributesvalues'));
+        $attributesvalues = AttributesValues::with('attributes')
+                            ->orderBy('attributes_id')
+                            ->paginate(50);
+    
+        return view('backend.attributes_values.index', compact('attributesvalues'));
     }
+    
     
     public function createattributes_values() {
         $data['attributes'] = Attributes::where('status', 1)->get();

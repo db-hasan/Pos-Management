@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Attributes;
+use App\Models\AttributesValues;
 use App\Models\CostType;
 use App\Models\Warehouse;
 use App\Models\Product;
@@ -78,6 +79,8 @@ class DatabaseSeeder extends Seeder
 
         $role->syncPermissions($permissions);
         $user->syncRoles([$role->id]);
+
+        $this->call(AttributesValuesSeeder::class);
 
     }
 }
