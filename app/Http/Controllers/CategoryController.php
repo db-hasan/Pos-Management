@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Exception;
 use App\Models\Category;
 
@@ -46,11 +46,11 @@ class CategoryController extends Controller
     }
 
     public function editcategory($id=null){
-        $categorys['category'] = Category::find($id);
-        if (!$categorys['category']) {
+        $data['category'] = Category::find($id);
+        if (!$data['category']) {
             return redirect()->back();
         }     
-        return view('backend/category/edit', $categorys);
+        return view('backend/category/edit', $data);
     }
 
     public function updatecategory(Request $request, $id): RedirectResponse

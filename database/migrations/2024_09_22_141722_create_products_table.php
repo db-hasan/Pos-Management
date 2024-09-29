@@ -13,14 +13,6 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');
-            $table->foreignId('subcategory_id');
-            $table->foreignId('childcategory_id');
-            $table->foreignId('innerChild_id');
-            $table->foreignId('brand_id');
-            $table->foreignId('size_id');
-            $table->foreignId('color_id');
-            $table->foreignId('certification_id');
             $table->string('name');
             $table->decimal('purchase_price', 10, 2); // Change to decimal
             $table->decimal('wholesale_price', 10, 2); // Change to decimal

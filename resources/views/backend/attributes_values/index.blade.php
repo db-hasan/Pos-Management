@@ -12,7 +12,7 @@
                 </nav>
             </div>
             <div class="text-end pt-2">
-                <a href="{{ route('value.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
+                <a href="{{ route('attributes_values.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
                     Add Attributes Value</a>
             </div>
         </div>
@@ -22,31 +22,27 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Category</th>
                         <th>Attributes</th>
                         <th>Attributes Value</th>
-                        <th>Priority</th>
                         <th>Status</th>
                         <th class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($values as $value)
+                    @foreach ($attributesvalues as $attributesvalue)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{ $value->category->name}}</td>
-                            <td>{{ $value->varision->name}}</td>
-                            <td>{{ $value->value->name}}</td>
-                            <td>{{ $value->priority}}</td>
+                            <td>{{ $attributesvalue->attributes->name}}</td>
+                            <td>{{ $attributesvalue->name}}</td>
                             <td>
-                                @if($value->status == 1)
+                                @if($attributesvalue->status == 1)
                                     Active
-                                @elseif($value->status == 2)
+                                @elseif($attributesvalue->status == 2)
                                     Inactive
                                 @endif
                             </td>
                             <td class="d-flex justify-content-end">
-                                <a href="{{ route('value.edit', $value->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('attributes_values.edit', $attributesvalue->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
                             </td>
                         </tr>
                     @endforeach

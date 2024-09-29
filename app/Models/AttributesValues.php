@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Varision extends Model
+class AttributesValues extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
+        'attributes_id',
         'name',
         'status',
     ];
 
-    public function category(): BelongsTo
+    public function attributes(): BelongsTo
     {
-        return $this->belongsTo(Category::class,'category_id');
+        return $this->belongsTo(Attributes::class,'attributes_id');
     }
 }

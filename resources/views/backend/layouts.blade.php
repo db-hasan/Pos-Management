@@ -69,18 +69,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('varision.index') }}">
-                            <i class="bi bi-circle"></i><span>Varision</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('attributes.index') }}">
                             <i class="bi bi-circle"></i><span>Attributes</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('value.index') }}">
-                            <i class="bi bi-circle"></i><span>Attributes Value</span>
+                        <a href="{{ route('attributes_values.index') }}">
+                            <i class="bi bi-circle"></i><span>Attributes Values</span>
                         </a>
                     </li>
                 </ul>

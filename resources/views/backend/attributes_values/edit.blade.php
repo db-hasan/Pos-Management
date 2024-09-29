@@ -19,42 +19,29 @@
         </div>
         <hr>
         <div class="card">
-            <form method="post" action="{{ route('attributes.update', $attributes->id) }}" enctype="multipart/form-data"
+            <form method="post" action="{{ route('attributes_values.update', $attributesvalues->id) }}" enctype="multipart/form-data"
                 class="row g-3 p-3">
                 @csrf
                 @method('PUT')
             
                 <div class="col-md-12 pb-3">
-                    <label for="category_id" class="form-label">Category<span class="text-danger">*</span></label>
-                    <select id="category_id" name="category_id" class="form-select" required>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ $category->category_id == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
+                    <label for="attributes_id" class="form-label">Attributes<span class="text-danger">*</span></label>
+                    <select id="attributes_id" name="attributes_id" class="form-select" required>
+                        @foreach ($attributes as $attribute)
+                            <option value="{{ $attribute->id }}" {{ $attribute->attribute_id == $attribute->id ? 'selected' : '' }}>
+                                {{ $attribute->name }}
                             </option>
                         @endforeach
                     </select>
-                    @error('category_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-md-12 pb-3">
-                    <label for="varision_id" class="form-label">Varisions<span class="text-danger">*</span></label>
-                    <select id="varision_id" name="varision_id" class="form-select" required>
-                        @foreach ($varisions as $varision)
-                            <option value="{{ $varision->id }}" {{ $varision->category_id == $varision->id ? 'selected' : '' }}>
-                                {{ $varision->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('varision_id')
+                    @error('attributes_id')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             
                 <div class="col-md-12 pb-3">
-                    <label for="priority" class="form-label">Amount<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="priority" name="priority" value="{{ $attributes->amount }}" required>
-                    @error('priority')
+                    <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
+                    <input type="name" class="form-control" id="name" name="name" value="{{ $attribute->name }}" required>
+                    @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -62,8 +49,8 @@
                 <div class="col-md-12">
                     <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
                     <select class="form-select" name="status" id="status">
-                        <option value="1" {{ $attributes->status == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="2" {{ $attributes->status == 2 ? 'selected' : '' }}>Inactive</option>
+                        <option value="1" {{ $attribute->status == 1 ? 'selected' : '' }}>Active</option>
+                        <option value="2" {{ $attribute->status == 2 ? 'selected' : '' }}>Inactive</option>
                     </select>
                     @error('status')
                         <span class="text-danger">{{ $message }}</span>

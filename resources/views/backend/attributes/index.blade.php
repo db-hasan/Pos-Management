@@ -3,7 +3,7 @@
     <main id="main" class="main">
         <div class="d-flex justify-content-between">
             <div class="pagetitle">
-                <h1>Attributes</h1>
+                <h1>Attributes List</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
@@ -13,7 +13,7 @@
             </div>
             <div class="text-end pt-2">
                 <a href="{{ route('attributes.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
-                    Add attributes</a>
+                    Add Attributes</a>
             </div>
         </div>
         <hr>
@@ -22,9 +22,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Category</th>
-                        <th>Attributes </th>
-                        <th>Priority</th>
+                        <th>Attributes Name</th>
                         <th>Status</th>
                         <th class="text-end">Action</th>
                     </tr>
@@ -32,10 +30,8 @@
                 <tbody>
                     @foreach ($attributes as $attribute)
                         <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{ $attribute->category->name}}</td>
-                            <td>{{ $attribute->varision->name}}</td>
-                            <td>{{ $attribute->priority}}</td>
+                            <td>{{$attribute->id}}</td>
+                            <td>{{ $attribute->name}}</td>
                             <td>
                                 @if($attribute->status == 1)
                                     Active

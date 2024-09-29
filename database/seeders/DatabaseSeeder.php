@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Category;
-use App\Models\Varision;
+use App\Models\Attributes;
 use App\Models\CostType;
 use App\Models\Warehouse;
 use App\Models\Product;
@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
     private $categories = [
         'Category 1', 'Category 2', 'Category 3'
     ];
-    private $varisions = [
+    
+    private $attributes = [
         'Brand', 'Model', 'Type', 'Size', 'Color',  'Certification', 'Others',
     ];
 
@@ -57,8 +58,8 @@ class DatabaseSeeder extends Seeder
             Category::create(['name' => $category]);
         };
 
-        foreach ($this->varisions as $varision) {
-            Varision::create(['name' => $varision]);
+        foreach ($this->attributes as $attribute) {
+            Attributes::create(['name' => $attribute]);
         };
 
         foreach ($this->costtypes as $costtype) {

@@ -12,20 +12,34 @@
                 </nav>
             </div>
             <div class="text-end pt-2">
-                <a href="{{ route('attributes.index') }}" class="btn btn-primary"><i class="fa-regular fa-eye"></i>
+                <a href="{{ route('attributes_values.index') }}" class="btn btn-primary"><i class="fa-regular fa-eye"></i>
                     View
                     Attributes</a>
             </div>
         </div>
         <hr>
         <div class="card">
-            <form method="post" action="{{ route('attributes.store') }}" encattributes="multipart/form-data" class="row g-3 p-3">
+            <form method="post" action="{{ route('attributes_values.store') }}" encattributes="multipart/form-data" class="row g-3 p-3">
                 @csrf
 
                 <div class="col-md-12 pb-3">
-                    <label for="name" class="form-label">Attributes Name<span class="text-danger">*</span></label>
+                    <label for="attributes_id" class="form-label">Category<span class="text-danger">*</span></label>
+                    <select id="attributes_id" name="attributes_id" class="form-select" required>
+                        <option selected disabled>Select One</option>
+                        @foreach ($attributes as $attribute)
+                            <option value="{{ $attribute->id }}">{{ $attribute->name }}</option>
+                        @endforeach
+                    </select>
+                    
+                    @error('attributes_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                
+                <div class="col-md-12 pb-3">
+                    <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
-                        required>
+                    required>
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

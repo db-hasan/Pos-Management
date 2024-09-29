@@ -12,14 +12,6 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'category_id',
-        'subcategory_id',
-        'childcategory_id',
-        'innerChild_id',
-        'brand_id',
-        'size_id',
-        'color_id',
-        'certification_id',
         'name',
         'purchase_price',
         'wholesale_price ',
@@ -35,8 +27,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class,'category_id');
     }
-    public function varision(): BelongsTo
+    public function attributes(): BelongsTo
     {
-        return $this->belongsTo(Varision::class,'varision_id');
+        return $this->belongsTo(Attributes::class,'attributes_id');
     }
 }
