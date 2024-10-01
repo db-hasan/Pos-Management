@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class AttributesValues extends Model
+class Varision extends Model
 {
     use HasFactory;
     protected $fillable = [

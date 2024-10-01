@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Attributes;
-use App\Models\AttributesValues;
+use App\Models\Varision;
 use App\Models\CostType;
 use App\Models\Warehouse;
 use App\Models\Product;
@@ -32,10 +32,6 @@ class DatabaseSeeder extends Seeder
 
     private $categories = [
         'Category 1', 'Category 2', 'Category 3'
-    ];
-    
-    private $attributes = [
-        'Brand', 'Model', 'Type', 'Size', 'Color',  'Certification', 'Others',
     ];
 
     private $costtypes = [
@@ -59,10 +55,6 @@ class DatabaseSeeder extends Seeder
             Category::create(['name' => $category]);
         };
 
-        foreach ($this->attributes as $attribute) {
-            Attributes::create(['name' => $attribute]);
-        };
-
         foreach ($this->costtypes as $costtype) {
             CostType::create(['name' => $costtype]);
         };
@@ -80,7 +72,8 @@ class DatabaseSeeder extends Seeder
         $role->syncPermissions($permissions);
         $user->syncRoles([$role->id]);
 
-        $this->call(AttributesValuesSeeder::class);
+        $this->call(AttributesSeeder::class);
+
 
     }
 }

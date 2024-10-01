@@ -11,6 +11,11 @@ class Attributes extends Model
     protected $fillable = [
         'id',
         'name',
+        'priority',
         'status',
     ];
+    public function varisions()
+    {
+        return $this->hasMany(Varision::class, 'attributes_id');
+    }
 }

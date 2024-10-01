@@ -6,7 +6,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AttributesController;
-use App\Http\Controllers\AttributesValuesController;
 
 use App\Http\Controllers\CostTypeController;
 use App\Http\Controllers\CostingController;
@@ -62,12 +61,6 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('attributes-insert',[AttributesController::class,'storeattributes'])->name('attributes.store');
     Route::get('attributes-update/{id}',[AttributesController::class,'editattributes'])->name('attributes.edit');
     Route::put('attributes-update/{id}',[AttributesController::class,'updateattributes'])->name('attributes.update');
-
-    Route::get('attributes_values-index',[AttributesValuesController::class, 'indexattributes_values'])->name('attributes_values.index');
-    Route::get('attributes_values-insert',[AttributesValuesController::class,'createattributes_values'])->name('attributes_values.create');
-    Route::post('attributes_values-insert',[AttributesValuesController::class,'storeattributes_values'])->name('attributes_values.store');
-    Route::get('attributes_values-update/{id}',[AttributesValuesController::class,'editattributes_values'])->name('attributes_values.edit');
-    Route::put('attributes_values-update/{id}',[AttributesValuesController::class,'updateattributes_values'])->name('attributes_values.update');
 
     Route::get('warehouse-index',[WarehouseController::class, 'indexwarehouse'])->name('warehouse.index');
     Route::get('warehouse-insert',[WarehouseController::class,'createwarehouse'])->name('warehouse.create');

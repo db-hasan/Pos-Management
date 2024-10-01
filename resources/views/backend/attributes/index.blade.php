@@ -22,7 +22,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Attributes Name</th>
+                        <th>Attributes</th>
+                        <th>Priority</th>
+                        <th>Varision</th>
                         <th>Status</th>
                         <th class="text-end">Action</th>
                     </tr>
@@ -32,6 +34,16 @@
                         <tr>
                             <td>{{$attribute->id}}</td>
                             <td>{{ $attribute->name}}</td>
+                            <td>{{ $attribute->priority}}</td>
+                            <td>
+                                @if($attribute->varisions->isNotEmpty())
+                                    @foreach($attribute->varisions as $varision)
+                                        <label class="badge rounded-pill text-bg-success">{{ $varision->name }}</label>
+                                    @endforeach
+                                @else
+                                    No variations available
+                                @endif
+                            </td>
                             <td>
                                 @if($attribute->status == 1)
                                     Active
@@ -39,6 +51,7 @@
                                     Inactive
                                 @endif
                             </td>
+                            
                             <td class="d-flex justify-content-end">
                                 <a href="{{ route('attributes.edit', $attribute->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
                             </td>

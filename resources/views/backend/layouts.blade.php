@@ -73,13 +73,9 @@
                             <i class="bi bi-circle"></i><span>Attributes</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('attributes_values.index') }}">
-                            <i class="bi bi-circle"></i><span>Attributes Values</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
+            
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#products" data-bs-toggle="collapse" href="#">
@@ -139,8 +135,11 @@
                             <i class="bi bi-circle"></i><span>Stock Transfer</span>
                         </a>
                     </li>
-
-                    
+                    <li>
+                        <a href="">
+                            <i class="bi bi-circle"></i><span>Transfer Report</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
