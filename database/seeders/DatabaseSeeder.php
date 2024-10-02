@@ -30,10 +30,6 @@ class DatabaseSeeder extends Seeder
     ];
 
 
-    private $categories = [
-        'Category 1', 'Category 2', 'Category 3'
-    ];
-
     private $costtypes = [
         'Labour', 'Storage', 'Rent', 'Utilities', 'Employee', 'Others',
     ];
@@ -49,10 +45,6 @@ class DatabaseSeeder extends Seeder
 
         foreach ($this->warehouses as $warehouse) {
             Warehouse::create(['name' => $warehouse]);
-        };
-
-        foreach ($this->categories as $category) {
-            Category::create(['name' => $category]);
         };
 
         foreach ($this->costtypes as $costtype) {

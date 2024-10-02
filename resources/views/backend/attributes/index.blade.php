@@ -23,7 +23,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Attributes</th>
-                        <th>Priority</th>
                         <th>Varision</th>
                         <th>Status</th>
                         <th class="text-end">Action</th>
@@ -34,7 +33,6 @@
                         <tr>
                             <td>{{$attribute->id}}</td>
                             <td>{{ $attribute->name}}</td>
-                            <td>{{ $attribute->priority}}</td>
                             <td>
                                 @if($attribute->varisions->isNotEmpty())
                                     @foreach($attribute->varisions as $varision)

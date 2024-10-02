@@ -15,4 +15,11 @@ class Category extends Model
         'name',
         'status',
     ];
+
+    public function category_arttributes()
+    {
+        return $this->hasMany(CategoryAttributes::class, 'categories_id');
+    }
+    
+   
 }

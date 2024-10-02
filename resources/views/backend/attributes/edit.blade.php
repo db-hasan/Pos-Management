@@ -30,15 +30,8 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-md-3 pb-3">
-                    <label for="priority" class="form-label">Priority<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="priority" name="priority" value="{{ $attributes->priority }}" required>
-                    @error('priority')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
         
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
                     <select class="form-select" name="status" id="status" required>
                         <option value="1" {{ $attributes->status == 1 ? 'selected' : '' }}>Active</option>

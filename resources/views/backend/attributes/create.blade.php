@@ -22,17 +22,10 @@
             <form method="post" action="{{ route('attributes.store') }}" enctype="multipart/form-data" class="row g-3 p-3">
                 @csrf
             
-                <div class="col-md-6 pb-3">
+                <div class="col-md-12 pb-3">
                     <label for="name" class="form-label">Attributes<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                     @error('name')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-md-6 pb-3">
-                    <label for="priority" class="form-label">Priority</label>
-                    <input type="number" class="form-control me-2" name="priority" placeholder="Priority between  1 - 100" value="{{ old('priority') }}" required>
-                    @error('priority')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

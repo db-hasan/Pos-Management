@@ -24,7 +24,6 @@ class AttributesController extends Controller
         // Validate the request
         $request->validate([
             'name' => 'required',
-            'priority' => 'nullable',
             
             'varision' => 'required|array|min:1', // Ensure varisions are present and at least 1 is provided
             'varision.*' => 'required|string',    // Ensure each varision is a valid string
@@ -36,7 +35,6 @@ class AttributesController extends Controller
         try {
             $attributes = new Attributes();
             $attributes->name = $request->name;
-            $attributes->priority = $request->priority ?? 1;
             $attributes->save();
 
             foreach ($request->varision as $varisionName) {
@@ -76,7 +74,6 @@ class AttributesController extends Controller
         // Validate the request
         $request->validate([
             'name' => 'required|string',
-            'priority' => 'required|integer',
             'status' => 'required|in:1,2', // Validate attribute status
             'varision' => 'required|array|min:1', // Ensure at least one variation is present
             'varision.*' => 'required|string', // Each variation must be a valid string
@@ -89,7 +86,6 @@ class AttributesController extends Controller
         try {
             $attribute = Attributes::findOrFail($id);
             $attribute->name = $request->input('name');
-            $attribute->priority = $request->input('priority');
             $attribute->status = $request->input('status');
             $attribute->save();
     

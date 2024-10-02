@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Models\Category;
+use App\Models\Attributes;
+use App\Models\CategoryAttributes;
 
 
 
@@ -22,30 +25,58 @@ class CategoryController extends Controller
     // ***********Product category Funcation************
 
     public function indexcategory() {
-        $categorys = Category::paginate(50);
+        $categorys = Category::with('category_arttributes.attributes')->paginate(50);
         return view('backend.category.index',compact('categorys'));
     }
     
     public function createcategory() {
-        return view('backend.category.create');
+        $attributes = Attributes::where('status', 1)->get();
+        return view('backend.category.create', compact('attributes'));
     }
-    public function storecategory(Request $request):RedirectResponse
+    
+    public function storecategory(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required',
+            'attributes_id' => 'required|array|min:1',
+            'attributes_id.*' => 'required|int',
+            'priority' => 'required|array|min:1',
+            'priority.*' => 'required|int',
         ]);
-
+    
+        DB::beginTransaction();
+    
         try {
-            $data = new Category();
-            $data->name = $request->name;
-            $data->save();
-            return redirect()->route('category.index')->with('success', 'category created successfully.');
+            $category = new Category();
+            $category->name = $request->name;
+            $category->save();
+    
+            // Get unique attributes_id values
+            $uniqueAttributes = array_unique($request->attributes_id);
+            
+            // Loop through unique attributes
+            foreach ($uniqueAttributes as $index => $attributesId) {
+                // Ensure priority exists for the unique attribute
+                if (isset($request->priority[$index])) {
+                    $categoryAttribute = new CategoryAttributes();
+                    $categoryAttribute->categories_id = $category->id;
+                    $categoryAttribute->attributes_id = $attributesId;
+                    $categoryAttribute->priority = $request->priority[$index];
+                    $categoryAttribute->status = 1;
+                    $categoryAttribute->save();
+                }
+            }
+            DB::commit();
+    
+            return redirect()->route('category.index')->with('success', 'Category created successfully.');
         } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->route('category.index')->with('error', 'An error occurred. Please try again.');
         }
     }
+    
 
-    public function editcategory($id=null){
+    public function editcategory($id){
         $data['category'] = Category::find($id);
         if (!$data['category']) {
             return redirect()->back();
@@ -55,20 +86,6 @@ class CategoryController extends Controller
 
     public function updatecategory(Request $request, $id): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'status' => 'required',
-        ]);
         
-        try {
-            $data = Category::findOrFail($id);
-            $data->name   = $request->input('name');
-            $data->status  = $request->input('status');
-            $data->save();
-
-                return redirect()->route('category.index')->with('success', 'Data update successfully.');
-            } catch (\Exception $e) {
-                return redirect()->route('category.index')->with('error', $e->getMessage());
-        }
     }
 }

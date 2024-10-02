@@ -22,7 +22,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Category Name</th>
+                        <th>Category</th>
+                        <th>Attributes</th>
                         <th>Status</th>
                         <th class="text-end">Action</th>
                     </tr>
@@ -32,6 +33,27 @@
                         <tr>
                             <td>{{$category->id}}</td>
                             <td>{{ $category->name}}</td>
+                            <td>
+                                @if ($category->category_arttributes->isNotEmpty()) 
+                                <ul>
+                                    @foreach ($category->category_arttributes as $attribute)
+                                    <li>{{ $attribute->attributes->name ?? 'N/A' }} | 
+                                        <span class="text-info">Priority:</span> 
+                                        {{ $attribute->priority }} 
+                                        <span class="text-info">Status:</span>  
+                                        @if ($attribute->status == 1)
+                                            Active
+                                        @elseif ($attribute->status == 2)
+                                            Inactive
+                                        @endif 
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @else
+                                    <p>No attributes available</p>
+                                @endif
+                            </td>
+                            
                             <td>
                                 @if($category->status == 1)
                                     Active
