@@ -77,7 +77,7 @@ class CategoryController extends Controller
     
 
     public function editcategory($id){
-        $data['category'] = Category::find($id);
+        $data['category'] = Category::with('category_arttributes.attributes')->find($id);
         if (!$data['category']) {
             return redirect()->back();
         }     
