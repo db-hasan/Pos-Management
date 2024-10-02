@@ -41,27 +41,31 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
+        
                 <div class="col-md-12 pb-3" id="rowWrapper">
                     <div class="d-flex justify-content-between mb-3 mx-2">
-                        <label for="varision" class="form-label">Varision<span class="text-danger">*</span></label>
+                        <label for="arttributes_id" class="form-label">Attributes<span class="text-danger">*</span></label>
                         <a href="javascript:void(0)" class="btn btn-primary" id="addRow"><i class="bi bi-plus-square px-2"></i>Add New</a>
                     </div>
+        
                     @foreach($category->category_arttributes as $arttribute)
-                    <div class="row rowItem  mb-4">
+                    <div class="row rowItem mb-4">
                         <div class="col-md-4">
-                            <select class="form-select" name="status_arttribute[]" required>
-                                <option value="1" {{ $arttribute->status == 1 ? 'selected' : '' }}>Active</option>
-                                <option value="2" {{ $arttribute->status == 2 ? 'selected' : '' }}>Inactive</option>
+                            <select name="attributes_id[]" class="form-select" required>
+                                @foreach ($attributes as $item)
+                                    <option value="{{ $item->id }}" {{ $arttribute->attributes_id == $item->id ? 'selected' : '' }}>
+                                        {{ $item->name }}
+                                    </option>
+                                @endforeach
                             </select>
-                            @error('arttributes_id')
+                            @error('attributes_id.*')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-
+        
                         <div class="col-md-4">
-                            <input type="number" class="form-control me-2" name="priority[]" placeholder="priority" value="{{ $arttribute->name }}" required>
-                            @error('priority')
+                            <input type="number" class="form-control" name="priority[]" placeholder="Priority" value="{{ $arttribute->priority }}" required>
+                            @error('priority.*')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -71,14 +75,13 @@
                                 <option value="1" {{ $arttribute->status == 1 ? 'selected' : '' }}>Active</option>
                                 <option value="2" {{ $arttribute->status == 2 ? 'selected' : '' }}>Inactive</option>
                             </select>
-                            @error('status_arttribute')
+                            @error('status_arttribute.*')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     @endforeach
                 </div>
-                
                 
                 <div class="col-12 mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
@@ -91,36 +94,30 @@
         <script>
             $('#addRow').click(function(e) {
                 e.preventDefault();
-                let newRow = `<div class="row rowItem  mb-4">
+                let newRow = `<div class="row rowItem mb-4">
                                 <div class="col-md-4">
-                                    <select class="form-select" name="status_arttribute[]" required>
-                                        <option value="1" {{ $arttribute->status == 1 ? 'selected' : '' }}>Active</option>
-                                        <option value="2" {{ $arttribute->status == 2 ? 'selected' : '' }}>Inactive</option>
+                                    <select name="attributes_id[]" class="form-select" required>
+                                        <option value="" disabled selected>Select One</option> <!-- Default Option -->
+                                        @foreach ($attributes as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
                                     </select>
-                                    @error('arttributes_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="number" class="form-control me-2" name="priority[]" placeholder="priority" value="{{ $arttribute->name }}" required>
-                                    @error('priority')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <input type="number" class="form-control" name="priority[]" placeholder="Priority" required>
                                 </div>
-                                
                                 <div class="col-md-4">
                                     <select class="form-select" name="status_arttribute[]" required>
-                                        <option value="1" {{ $arttribute->status == 1 ? 'selected' : '' }}>Active</option>
-                                        <option value="2" {{ $arttribute->status == 2 ? 'selected' : '' }}>Inactive</option>
+                                        <option value="1">Active</option>
+                                        <option value="2">Inactive</option>
                                     </select>
-                                    @error('status_arttribute')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>`;
                 $('#rowWrapper').append(newRow);
             });
         </script>
+
+        
         
         </div>
 

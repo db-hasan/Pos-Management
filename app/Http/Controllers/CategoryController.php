@@ -76,16 +76,71 @@ class CategoryController extends Controller
     }
     
 
-    public function editcategory($id){
+    public function editcategory($id)
+    {
         $data['category'] = Category::with('category_arttributes.attributes')->find($id);
+        $data['attributes'] = Attributes::where('status', 1)->get();
+        
         if (!$data['category']) {
-            return redirect()->back();
-        }     
+            return redirect()->back()->with('error', 'Category not found.');
+        }
+        
         return view('backend/category/edit', $data);
     }
+    
 
     public function updatecategory(Request $request, $id): RedirectResponse
     {
-        
+        // Validate incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'attributes_id' => 'required|array|min:1',
+            'attributes_id.*' => 'required|int',
+            'priority' => 'required|array|min:1',
+            'priority.*' => 'required|int',
+            'status_arttribute' => 'required|array|min:1',
+            'status_arttribute.*' => 'required|in:1,2',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $category = Category::findOrFail($id);
+            $category->name = $request->name;
+            $category->status = $request->status; 
+            $category->save();
+
+            // Get existing category attributes
+            $existingAttributes = $category->category_arttributes()->get();
+            $existingAttributeIds = $existingAttributes->pluck('attributes_id')->toArray();
+
+            // Update existing attributes or create new ones
+            foreach ($request->attributes_id as $index => $attributesId) {
+                $priority = $request->priority[$index];
+                $status_arttribute = $request->status_arttribute[$index];
+
+                if (in_array($attributesId, $existingAttributeIds)) {
+                    $categoryAttribute = $existingAttributes->firstWhere('attributes_id', $attributesId);
+                    $categoryAttribute->priority = $priority;
+                    $categoryAttribute->status = $status_arttribute; 
+                    $categoryAttribute->save();
+                } else {
+                    CategoryAttributes::create([
+                        'categories_id' => $category->id,
+                        'attributes_id' => $attributesId,
+                        'priority' => $priority,
+                        'status_arttribute' => $status_arttribute,
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return redirect()->route('category.index')->with('success', 'Category updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('category.index')->with('error', 'An error occurred. Please try again.');
+        }
     }
+
 }
